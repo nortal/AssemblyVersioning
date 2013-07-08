@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>$id$.Dll</id>
+		<version>$version$</version>
+		<title>Nortal.Utilities.AssemblyVersioning (DLL reference)</title>
+		<authors>Imre Pühvel</authors>
+		<owners>Nortal AS</owners>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Includes a dll to application bin directory with various utilities for generating with assembly versioning and System.Version.</description>
+		<releaseNotes>
+			Build: $configuration$
+		</releaseNotes>
+		<copyright>Copyright 2013</copyright>
+		<tags>nortal assembly versioning</tags>
+		<iconUrl>http://www.nortal.com/_gfx/logo-32x32.png</iconUrl>
+	</metadata>
+	<files>
+		<!--
+		<file src="bin\Release\Nortal.Utilities.AssemblyVersioning.pdb" target="lib\net40\" />
+		-->
+	</files>
+</package>
