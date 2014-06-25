@@ -6,12 +6,13 @@
 		<title>Nortal.Utilities.AssemblyVersioning (DLL reference)</title>
 		<authors>Imre Pühvel</authors>
 		<owners>Nortal AS</owners>
+		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Includes a dll to application bin directory with various utilities for generating with assembly versioning and System.Version.</description>
 		<releaseNotes>
 			Build: $configuration$
 		</releaseNotes>
-		<copyright>Copyright 2013</copyright>
+		<copyright>Copyright 2013-2014</copyright>
 		<tags>nortal assembly versioning</tags>
 		<iconUrl>http://www.nortal.com/_gfx/logo-32x32.png</iconUrl>
 	</metadata>

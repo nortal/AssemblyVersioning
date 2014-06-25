@@ -2,23 +2,24 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>Nortal.Utilities.AssemblyVersioning.MsBuildTask</id>
-		<version>0.9.0</version>
+		<version>0.10.0</version>
 		<title>Nortal.Utilities.AssemblyVersioning.MsBuildTask</title>
 		<authors>Imre Pühvel</authors>
 		<owners>Nortal AS</owners>
+		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Sets up project to automatically generate extended version information to code on each build.</description>
+		<description>Sets up project to automatically generate extended version information attributes on each build.</description>
 		<releaseNotes>
 			Build: $configuration$
 		</releaseNotes>
-		<copyright>Copyright 2013</copyright>
+		<copyright>Copyright 2013-2104</copyright>
 		<tags>nortal assembly versioning msbuild</tags>
 		<iconUrl>http://www.nortal.com/_gfx/logo-32x32.png</iconUrl>
 	</metadata>
 	<files>
-		<file src="tools\*.ps1" target="tools\" />
-		<file src="content\Properties\*.cs" target="content\Properties\" />
-		<file src="content\_tools\*.*" target="content\_tools\" />
-		<file src="..\..\bin\$configuration$\Nortal.Utilities.AssemblyVersioning.dll" target="content\_tools\" />
+		<file src="Readme.OnInstall.txt" target="Readme.txt" />
+		<file src="build\*.*" target="build\" />
+		<file src="content\Properties\*.*" target="content\Properties\" />
+		<file src="..\..\bin\$configuration$\Nortal.Utilities.AssemblyVersioning.dll" target="build\" />
 	</files>
 </package>

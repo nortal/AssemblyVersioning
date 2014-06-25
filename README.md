@@ -1,17 +1,24 @@
 AssemblyVersioning
 ==================
 
-Tool to automatically update .Net assembly versioning information on each build using prepared patterns. 
-Project contains assembly to generate assembly version numbers and a MsBuild task.
+Tool to automatically manage versioning numbers of a C# project (assembly, file version, informational configuration info).
 
-Requirements: Microsoft.Net Framework 4.0
+Project contains
+* Dll implementing various version number generation algorithms
+* MSBuild task and target to trigger automatically on every build
+* MSBuild props file to configure the MSBuild task
+* Nuget packaging for quick applying to your projects 
 
 Licenced under Apache Licence v2.0.
 
+Requirements
+-------------
+MSBuild task is built using Microsoft .Net Framework 4.0. 
+Can be applied to projects of any .Net version as long as MsBuild 4.0 or newer is used (Visual Studio 2010+).
+
 Functionality
 -------------
-
-Tool uses AssemblyVersionAttribute value as input and automatically creates following attributes to project:
+Tool uses AssemblyVersionAttribute value as input and can automatically create the following attributes to project:
 * AssemblyInformationalVersionAttribute - to control business-friendly version number
 * FileVersionAttribute - to control version number shown in windows explorer.
 * ConfigurationAttribute - to attach additional build information.
