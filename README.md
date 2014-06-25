@@ -37,11 +37,11 @@ User can configure which pattern is used for each target attribute. Available pa
 
 Getting started
 ---------------
-To install Nortal.Utilities.AssemblyVersioning.MsBuildTask, run the following command in the  Package Manager Console 
+To install the MsBuild task over <a href="https://nuget.org/packages/Nortal.Utilities.AssemblyVersioning.MsBuildTask/">Nuget</a>, run the following command in the  Package Manager Console 
 ```
 PM> Install-Package Nortal.Utilities.AssemblyVersioning.MsBuildTask
 ```
-On each build the file AssemblyInformationalVersion.gen.cs will be automatically populated with versioning info.
+On each build the file AssemblyInformationalVersion.gen.cs will be automatically populated with versioning info similar to this:
 
 ```
 using System.Reflection;

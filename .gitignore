@@ -108,3 +108,4 @@ Backup*/
 UpgradeLog*.XML
 /.nuget/NuGet.exe
 /AssemblyVersioning/_nugetPackaging/output/*.nupkg
+/UnitTests/FakesAssemblies
