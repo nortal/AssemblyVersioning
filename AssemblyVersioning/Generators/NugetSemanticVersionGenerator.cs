@@ -34,6 +34,7 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 				//NB! nuget limits prerelease version string to 20 chars, must start with a letter, contrary to semantic versioning standard no dot, no + allowed.
 				//ex: 1.2.3-Debug-20130423-1459
 				//ex: 1.2.3-RC-20130423-1459
+				// note: we cannot use simple iterator for prerelease (alpha-1, alpha-2, etc) as code has not and should not have any information about previous builds.
 				prereleasePart = String.Format("-{0}-{1}-{2}",
 					TrimToLength(context.BuildConfiguration, 6), //up to 6 chars
 					//1 char from pattern

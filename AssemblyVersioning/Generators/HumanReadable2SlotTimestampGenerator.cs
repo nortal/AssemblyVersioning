@@ -21,14 +21,16 @@ using System;
 namespace Nortal.Utilities.AssemblyVersioning.Generators
 {
 	/// <summary>
-	/// 
+	/// Generator to retain 2 left-most version parts and adds a build date and time stamp for 3-th and 4th slots.
+	/// <example>1.2.41231.2359</example>
 	/// </summary>
 	public class HumanReadable2SlotTimestampGenerator : SystemVersionGeneratorBase
 	{
 
 		internal static int BuildDatePart(DateTime forTime)
 		{
-			int yearpart = forTime.Year % 10 % 6; //last digit mod 6 (max value in version component is 65536)
+			//last digit mod 6 (max value in version component is 65536). Ex: 2016 -> 6; 2017 -> 0
+			int yearpart = forTime.Year % 10 % 7;
 			return yearpart * 10000 + 100 * forTime.Month + forTime.Day;
 		}
 
@@ -40,7 +42,7 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 		public override Version GenerateSystemVersion(VersionGenerationContext context)
 		{
 			if (context == null) { throw new ArgumentNullException("context"); }
-			
+
 			DateTime buildDate = DateTime.UtcNow;
 			var build = BuildDatePart(buildDate);
 			var revision = BuildTimePart(buildDate);

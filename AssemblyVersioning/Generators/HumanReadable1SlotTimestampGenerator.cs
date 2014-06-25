@@ -20,15 +20,21 @@ using System;
 
 namespace Nortal.Utilities.AssemblyVersioning.Generators
 {
+	/// <summary>
+	/// Generator to retain 3 left-most version parts and adds a build date stamp for 4-th slot.
+	/// <example>1.2.3.40131</example>
+	/// </summary>
 	public class HumanReadable1SlotTimestampGenerator : HumanReadable2SlotTimestampGenerator
 	{
 		public override Version GenerateSystemVersion(VersionGenerationContext context)
 		{
 			if (context == null) { throw new ArgumentNullException("context"); }
-			
+
 			DateTime now = DateTime.UtcNow;
 			var baseVersion = context.BaseVersion;
-			int revision = BuildDatePart(now);
+
+			//replace just the revision
+			int revision = BuildDatePart(now); //reuse the logic already built for HumanReadable2SlotTimestampGenerator
 
 			return new Version(baseVersion.Major, baseVersion.Minor, baseVersion.Build, revision);
 		}

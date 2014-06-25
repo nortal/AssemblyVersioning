@@ -16,11 +16,10 @@
 	This file is from project https://github.com/NortalLTD/AssemblyVersioning, Nortal.Utilities.AssemblyVersioning, file 'GeneratorResolver.cs'.
 */
 
+using System.Globalization;
+using Nortal.Utilities.AssemblyVersioning.Generators;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Nortal.Utilities.AssemblyVersioning.Generators;
 
 namespace Nortal.Utilities.AssemblyVersioning
 {
@@ -28,8 +27,6 @@ namespace Nortal.Utilities.AssemblyVersioning
 	{
 		public static IEnumerable<Type> FindAllGeneratorTypes()
 		{
-			var generators = new List<IVersionGenerator>();
-
 			Type searchInterface = typeof(IVersionGenerator);
 			foreach (var type in typeof(GeneratorResolver).Assembly.GetTypes())
 			{
@@ -57,13 +54,14 @@ namespace Nortal.Utilities.AssemblyVersioning
 
 		private static bool CheckNameMatchesType(String name, Type type)
 		{
-			if (String.Compare(type.Name, name, ignoreCase: true) == 0
-				|| String.Compare(type.Name, name + "Generator", ignoreCase: true) == 0
-				|| String.Compare(type.Name, name + "VersionGenerator", ignoreCase: true) == 0)
-			{
-				return true;
-			}
-			return false;
+			return CheckNameMatchesTypeNameExactly(name, type)
+				|| CheckNameMatchesTypeNameExactly(name + "Generator", type) // if suffix was omitted
+				|| CheckNameMatchesTypeNameExactly(name + "VersionGenertypeator", type); // if suffix was omitted
+		}
+
+		private static bool CheckNameMatchesTypeNameExactly(String name, Type type)
+		{
+			return String.Compare(type.Name, name, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase) == 0;
 		}
 	}
 }
