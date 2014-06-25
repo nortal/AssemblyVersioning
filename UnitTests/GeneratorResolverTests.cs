@@ -17,7 +17,7 @@ namespace UnitTests
 		}
 
 		[TestMethod]
-		public void CheckResolveByTypeName()
+		public void CheckResolveByName_TypeName()
 		{
 			Type testType = typeof(SkipVersionGenerator);
 			var generator = GeneratorResolver.ResolveByName(testType.Name);
@@ -27,9 +27,9 @@ namespace UnitTests
 		}
 
 		[TestMethod]
-		public void CheckResolveByShortName()
+		public void CheckResolveByName_Generator()
 		{
-			String testShortName = "SkipVersion";
+			const String testShortName = "Skip";
 			var generator = GeneratorResolver.ResolveByName(testShortName);
 
 			Assert.IsNotNull(generator);
@@ -37,9 +37,19 @@ namespace UnitTests
 		}
 
 		[TestMethod]
-		public void CheckResolveByDifferentlyCasedName()
+		public void CheckResolveByName_Shortest()
 		{
-			String testShortName = "skipversion";
+			const String testShortName = "Skip";
+			var generator = GeneratorResolver.ResolveByName(testShortName);
+
+			Assert.IsNotNull(generator);
+			Assert.IsInstanceOfType(generator, typeof(SkipVersionGenerator), "Resolved type does not match: {0}", generator.GetType().Name);
+		}
+
+		[TestMethod]
+		public void CheckResolveByName_DifferentCasing()
+		{
+			const String testShortName = "sKiP";
 			var generator = GeneratorResolver.ResolveByName(testShortName);
 
 			Assert.IsNotNull(generator);

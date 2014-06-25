@@ -56,7 +56,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 		{
 			return CheckNameMatchesTypeNameExactly(name, type)
 				|| CheckNameMatchesTypeNameExactly(name + "Generator", type) // if suffix was omitted
-				|| CheckNameMatchesTypeNameExactly(name + "VersionGenertypeator", type); // if suffix was omitted
+				|| CheckNameMatchesTypeNameExactly(name + "VersionGenerator", type); // if suffix was omitted
 		}
 
 		private static bool CheckNameMatchesTypeNameExactly(String name, Type type)
