@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="_nugetPackaging\MsBuildTask\Readme.OnInstall.txt" />
+    <None Include="_nugetPackaging\MsBuildTask\tools\install.ps1" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

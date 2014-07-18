@@ -3,13 +3,13 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("0.9.0.0")]
+[assembly: AssemblyVersion("0.10.0.0")]
 
 [assembly: AssemblyTitle("Nortal.Utilities.AssemblyVersioning")]
-[assembly: AssemblyDescription("Contains utilities for working with assembly version numbers.")]
+[assembly: AssemblyDescription("Contains utilities for generating assembly version numbers.")]
 [assembly: AssemblyCompany("Nortal AS")]
 [assembly: AssemblyProduct("Nortal.Utilities.AssemblyVersioning")]
-[assembly: AssemblyCopyright("Copyright 2013 Imre Pühvel, AS Nortal. Licenced under Apache License 2.0.")]
+[assembly: AssemblyCopyright("Copyright 2013-2014 Imre Pühvel, AS Nortal. Licenced under Apache License 2.0.")]
 
 [assembly: ComVisible(false)]
 [assembly: Guid("4ed1a6ab-b408-42be-b1ca-9795aaf1807f")]

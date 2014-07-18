@@ -8,17 +8,18 @@
 		<owners>Nortal AS</owners>
 		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Sets up project to automatically generate extended version information attributes on each build.</description>
+		<description>Sets up a c# project to automatically generate extended version information attributes on each build.</description>
 		<releaseNotes>
 			Build: $configuration$
 		</releaseNotes>
 		<copyright>Copyright 2013-2104</copyright>
-		<tags>nortal assembly versioning msbuild</tags>
+		<tags>nortal assembly versioning msbuild c#</tags>
 		<iconUrl>http://www.nortal.com/_gfx/logo-32x32.png</iconUrl>
 	</metadata>
 	<files>
 		<file src="Readme.OnInstall.txt" target="Readme.txt" />
 		<file src="build\*.*" target="build\" />
+		<file src="tools\*.*" target="tools\" />
 		<file src="content\Properties\*.*" target="content\Properties\" />
 		<file src="..\..\bin\$configuration$\Nortal.Utilities.AssemblyVersioning.dll" target="build\" />
 	</files>
