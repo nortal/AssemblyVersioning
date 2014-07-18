@@ -8,11 +8,12 @@
 		<owners>Nortal AS</owners>
 		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<projectUrl>https://github.com/nortal/AssemblyVersioning</projectUrl>
 		<description>Sets up a c# project to automatically generate extended version information attributes on each build.</description>
 		<releaseNotes>
 			Build: $configuration$
 		</releaseNotes>
-		<copyright>Copyright 2013-2104</copyright>
+		<copyright>Copyright 2013-2014 Imre Pühvel, AS Nortal.</copyright>
 		<tags>nortal assembly versioning msbuild c#</tags>
 		<iconUrl>http://www.nortal.com/_gfx/logo-32x32.png</iconUrl>
 	</metadata>
