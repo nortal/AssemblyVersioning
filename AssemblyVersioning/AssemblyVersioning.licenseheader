@@ -1,7 +1,7 @@
-extensions: designer.cs generated.cs
+﻿extensions: designer.cs generated.cs
 extensions: .cs
 /*
-	Copyright 2013 Imre P�hvel, AS Nortal
+	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
