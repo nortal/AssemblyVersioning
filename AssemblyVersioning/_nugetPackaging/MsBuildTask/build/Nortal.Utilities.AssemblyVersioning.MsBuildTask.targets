@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<UsingTask TaskName="Nortal.Utilities.AssemblyVersioning.GenerateExtendedAssemblyInfoTask" AssemblyFile="Nortal.Utilities.AssemblyVersioning.dll" />
 	<Import Project="$(MSBuildProjectDirectory)\Properties\Nortal.Utilities.AssemblyVersioning.MsBuildTask.props" />
-	<Target Name="NortalAssemblyVersioning" BeforeTargets="Build">
+	<Target Name="NortalAssemblyVersioning" BeforeTargets="CoreCompile">
 		<Message Text="Regenerating file with extra assembly information .. " />
 		<Message Importance="low" Text="Configuration: $(Configuration)" />
 		<Message Importance="low" Text="GeneratorForFileVersion: $(GeneratorForFileVersion)" />
