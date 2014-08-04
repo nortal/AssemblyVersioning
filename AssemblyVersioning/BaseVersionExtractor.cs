@@ -40,17 +40,30 @@ namespace Nortal.Utilities.AssemblyVersioning
 			}
 
 			// find assemblyVersion value from file: simplification, but since it is generated file, should be sufficient:
-			string versionLine = File.ReadAllLines(pathToBaseVersionFile)
+			string versionLineCandidate = File.ReadAllLines(pathToBaseVersionFile)
 				.Where(line => !line.StartsWith("//"))
-				.Where(line => line.Contains("AssemblyVersion"))
-				.FirstOrDefault();
+				.FirstOrDefault(line => line.Contains("AssemblyVersion"));
 
-			if (versionLine == null) { throw new InvalidOperationException(pathToBaseVersionFile + " did not contain expected AssemblyVersionAttribute declaration."); }
-			var assemblyVersion = versionLine.Split('"')[1];
+			if (versionLineCandidate == null) { throw new InvalidOperationException(pathToBaseVersionFile + " did not contain expected AssemblyVersionAttribute declaration."); }
+			return ParseVersionFromCandidate(logger, pathToBaseVersionFile, versionLineCandidate);
 
-			logger.LogMessage(MessageImportance.Normal, "Using base version: {0}.", assemblyVersion);
-			Version version = new Version(assemblyVersion);
-			return version;
+		}
+
+		private static Version ParseVersionFromCandidate(TaskLoggingHelper logger, string pathToBaseVersionFile, string versionLineCandidate)
+		{
+			try
+			{
+				//keep it simple. no regex or other fancy ways would be overkill.
+				var assemblyVersion = versionLineCandidate.Split('"')[1];
+
+				logger.LogMessage(MessageImportance.Normal, "Using base version: {0}.", assemblyVersion);
+				Version version = new Version(assemblyVersion);
+				return version;
+			}
+			catch (Exception exception)
+			{
+				throw new FormatException(pathToBaseVersionFile + " Assembly version declaration is in invalid format: '" + versionLineCandidate + "'.", exception);
+			}
 		}
 	}
 }

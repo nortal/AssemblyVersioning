@@ -12,15 +12,13 @@
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License.
-
-	This file is from project https://github.com/NortalLTD/AssemblyVersioning, %Namespace%, file 'AssemblyInfo.cs'.
 */
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("0.10.0.0")]
+[assembly: AssemblyVersion("0.10.1.0")]
 
 [assembly: AssemblyTitle("Nortal.Utilities.AssemblyVersioning")]
 [assembly: AssemblyDescription("Contains utilities for generating assembly version numbers.")]
