@@ -11,6 +11,8 @@
 
 		<!-- Remove read-only attribute for build servers -->
 		<Exec Command="attrib -R &quot;$(MSBuildProjectDirectory)\Properties\AssemblyInformationalVersion.gen.cs&quot;" />
+
+		<!-- generate new version info file-->
 		<GenerateExtendedAssemblyInfoTask
 			BaseVersionFile="Properties\AssemblyInfo.cs"
 			OutputFile="Properties\AssemblyInformationalVersion.gen.cs"
@@ -19,5 +21,11 @@
 			GeneratorForInformationalVersion="$(GeneratorForInformationalVersion)"
 			GeneratorForConfiguration="$(GeneratorForConfiguration)"
 		/>
+
+		<!-- dynamically add the generated file to compiled set -->
+		<ItemGroup>
+			<Compile Remove="Properties\AssemblyInformationalVersion.gen.cs" /> <!--trick to avoid a duplicate when file is already included in project.-->
+			<Compile Include="Properties\AssemblyInformationalVersion.gen.cs" />
+		</ItemGroup>
 	</Target>
 </Project>

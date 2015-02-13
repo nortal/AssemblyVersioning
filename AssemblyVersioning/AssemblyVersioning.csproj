@@ -72,7 +72,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInformationalVersion.gen.cs" />
-    <Compile Include="_nugetPackaging\MsBuildTask\content\Properties\AssemblyInformationalVersion.gen.cs" />
     <Compile Include="BaseVersionExtractor.cs" />
     <Compile Include="GenerateExtendedAssemblyInfoTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
