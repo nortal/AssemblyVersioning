@@ -20,11 +20,19 @@ using System.Globalization;
 using Nortal.Utilities.AssemblyVersioning.Generators;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Nortal.Utilities.AssemblyVersioning
 {
+	/// <summary>
+	/// Responsible for findin a generator class instance to use based on user configuration input.
+	/// </summary>
 	public static class GeneratorResolver
 	{
+		/// <summary>
+		/// Lists all supported generators automatically found in this assembly.
+		/// </summary>
+		/// <returns></returns>
 		public static IEnumerable<Type> FindAllGeneratorTypes()
 		{
 			Type searchInterface = typeof(IVersionGenerator);
@@ -38,10 +46,30 @@ namespace Nortal.Utilities.AssemblyVersioning
 			}
 		}
 
-		public static IVersionGenerator ResolveByName(String name)
+		/// <summary>
+		/// Scans included generators and tries to find a match for provided generator name.
+		/// </summary>
+		/// <param name="nameWithArgument"></param>
+		/// <returns></returns>
+		public static IVersionGenerator ResolveWithArgument(String nameWithArgument, VersionGenerationContext context)
 		{
-			if (String.IsNullOrEmpty(name)) { return new SkipVersionGenerator(); }
+			if (String.IsNullOrEmpty(nameWithArgument)) { return new SkipVersionGenerator(); }
+			// argument is separated from name by colon. Name cannot contain special symbols:
+			Regex regex = new Regex("^(?<namePart>[a-zA-Z]+)(:(?<argumentPart>.+))?$");
+			var match = regex.Match(nameWithArgument);
+			if (match.Success)
+			{
+				context.VersionGenerationArgument = match.Groups["argumentPart"].Value;
+				var namePart = match.Groups["namePart"].Value;
+				return ResolveByName(namePart);
+			}
 
+			context.VersionGenerationArgument = nameWithArgument; // generator name was omitted, everything is context.
+			return new CustomVersionGenerator(); // input not recognized. Assume custom context.
+		}
+
+		private static IVersionGenerator ResolveByName(String name)
+		{
 			foreach (var type in FindAllGeneratorTypes())
 			{
 				if (CheckNameMatchesType(name, type))
@@ -54,6 +82,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 
 		private static bool CheckNameMatchesType(String name, Type type)
 		{
+			//try names with a fallback logic.
 			return CheckNameMatchesTypeNameExactly(name, type)
 				|| CheckNameMatchesTypeNameExactly(name + "Generator", type) // if suffix was omitted
 				|| CheckNameMatchesTypeNameExactly(name + "VersionGenerator", type); // if suffix was omitted
@@ -61,7 +90,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 
 		private static bool CheckNameMatchesTypeNameExactly(String name, Type type)
 		{
-			return String.Compare(type.Name, name, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase) == 0;
+			return String.Compare(type.Name, name, CultureInfo.InvariantCulture, CompareOptions.IgnoreCase) == 0; // be lenient on case - user does not care much about case in configuration.
 		}
 	}
 }

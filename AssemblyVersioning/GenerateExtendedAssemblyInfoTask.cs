@@ -16,12 +16,12 @@
 	This file is from project https://github.com/NortalLTD/AssemblyVersioning, Nortal.Utilities.AssemblyVersioning, file 'GenerateExtendedAssemblyInfoTask.cs'.
 */
 
+using Microsoft.Build.Framework;
+using Microsoft.Build.Utilities;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 
 namespace Nortal.Utilities.AssemblyVersioning
 {
@@ -48,6 +48,10 @@ namespace Nortal.Utilities.AssemblyVersioning
 		public String GeneratorForInformationalVersion { get; set; }
 		public String GeneratorForConfiguration { get; set; }
 
+		/// <summary>
+		/// The entry-point to task functionality.
+		/// </summary>
+		/// <returns></returns>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
 		public override bool Execute()
 		{
@@ -90,8 +94,9 @@ namespace Nortal.Utilities.AssemblyVersioning
 			where TAttribute: Attribute
 		{
 			this.Log.LogMessage("Generating content for '{0}' using algorithm '{1}'..", typeof(TAttribute).Name, generatorName);
-			var generator = GeneratorResolver.ResolveByName(generatorName);
+			var generator = GeneratorResolver.ResolveWithArgument(generatorName, context);
 			Debug.Assert(generator != null);
+
 			String row = AssemblyInfoFileCreator.GenerateAttributeRow<TAttribute>(generator, context);
 			return row;
 		}

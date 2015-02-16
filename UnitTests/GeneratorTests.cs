@@ -12,6 +12,7 @@ namespace UnitTests
 	{
 
 		[TestMethod]
+		[TestCategory("PreparedGenerators")]
 		public void CheckSkipVersionGeneratorReturnsNull()
 		{
 			var generator = new SkipVersionGenerator();
@@ -21,6 +22,7 @@ namespace UnitTests
 		}
 
 		[TestMethod]
+		[TestCategory("PreparedGenerators")]
 		public void CheckHumanReadable1SlotTimeStampGenerator()
 		{
 			using (ShimsContext.Create())
@@ -39,6 +41,7 @@ namespace UnitTests
 		}
 
 		[TestMethod]
+		[TestCategory("PreparedGenerators")]
 		public void CheckHumanReadable2SlotTimeStampGenerator()
 		{
 			using (ShimsContext.Create())
@@ -59,6 +62,7 @@ namespace UnitTests
 		/// Tests that year part restarts correctly in 2017 and avoids exceeding Int16.Maxvalue.
 		/// </summary>
 		[TestMethod]
+		[TestCategory("PreparedGenerators")]
 		public void CheckHumanReadable2SlotTimeStampGenerator_For2017()
 		{
 			using (ShimsContext.Create())

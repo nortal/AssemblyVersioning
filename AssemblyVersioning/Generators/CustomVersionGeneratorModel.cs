@@ -1,0 +1,48 @@
+﻿/*
+	Copyright 2013 Imre Pühvel, AS Nortal
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+		http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+
+	This file is from project https://github.com/NortalLTD/AssemblyVersioning, Nortal.Utilities.AssemblyVersioning, file 'GenerateExtendedAssemblyInfoTask.cs'.
+*/
+
+using System;
+
+namespace Nortal.Utilities.AssemblyVersioning.Generators
+{
+	public sealed class CustomizedVersionModel
+	{
+		public CustomizedVersionModel(VersionGenerationContext context)
+		{
+			this.Context = context;
+		}
+
+		// storage for model properties
+		private VersionGenerationContext Context { get; set; }
+		private DateTime FixedNow = DateTime.Now; // to ensure it does not change between multiple calls
+		private DateTime FixedUtcNow = DateTime.UtcNow; // to ensure it does not change between multiple calls
+
+		// BaseVersion parts:
+		public int Major { get { return this.Context.BaseVersion.Major; } }
+		public int Minor { get { return this.Context.BaseVersion.Minor; } }
+		public int Build { get { return this.Context.BaseVersion.Build; } }
+		public int Revision { get { return this.Context.BaseVersion.Revision; } }
+
+		// date components:
+		public DateTime Now { get { return this.FixedNow; } }
+		public DateTime UtcNow { get { return this.FixedUtcNow; } }
+
+		public String BuildConfiguration { get { return this.Context.BuildConfiguration; } }
+
+	}
+}
