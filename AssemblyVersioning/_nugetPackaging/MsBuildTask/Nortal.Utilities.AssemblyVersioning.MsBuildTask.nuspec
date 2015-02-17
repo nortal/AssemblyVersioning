@@ -18,10 +18,11 @@
 		<iconUrl>http://www.nortal.com/_gfx/logo-32x32.png</iconUrl>
 	</metadata>
 	<files>
-		<file src="Readme.OnInstall.txt" target="Readme.txt" />
+		<file src="Readme.OnInstall.txt" target="" />
 		<file src="build\*.*" target="build\" />
 		<file src="tools\*.*" target="tools\" />
 		<file src="content\Properties\*.*" target="content\Properties\" />
 		<file src="..\..\bin\$configuration$\Nortal.Utilities.AssemblyVersioning.dll" target="build\" />
+		<file src="..\..\bin\$configuration$\Nortal.Utilities.TextTemplating.dll" target="build\" />
 	</files>
 </package>
