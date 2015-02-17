@@ -28,6 +28,8 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 	{
 		public string GenerateVersionInfoFrom(VersionGenerationContext context)
 		{
+			if (context == null) { throw new ArgumentNullException("context"); }
+
 			String customFormat = context.VersionGenerationArgument;
 			if (String.IsNullOrEmpty(customFormat)) { throw new ArgumentException("Custom format requested but no format was provided in VersionGenerationArgument.", "context"); }
 

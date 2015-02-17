@@ -16,10 +16,10 @@
 	This file is from project https://github.com/NortalLTD/AssemblyVersioning, Nortal.Utilities.AssemblyVersioning, file 'GeneratorResolver.cs'.
 */
 
-using System.Globalization;
 using Nortal.Utilities.AssemblyVersioning.Generators;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace Nortal.Utilities.AssemblyVersioning
@@ -53,6 +53,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 		/// <returns></returns>
 		public static IVersionGenerator ResolveWithArgument(String nameWithArgument, VersionGenerationContext context)
 		{
+			if (context == null) { throw new ArgumentNullException("context"); }
 			if (String.IsNullOrEmpty(nameWithArgument)) { return new SkipVersionGenerator(); }
 			// argument is separated from name by colon. Name cannot contain special symbols:
 			Regex regex = new Regex("^(?<namePart>[a-zA-Z]+)(:(?<argumentPart>.+))?$");
