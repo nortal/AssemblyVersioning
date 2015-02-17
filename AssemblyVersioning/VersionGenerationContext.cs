@@ -35,17 +35,10 @@ namespace Nortal.Utilities.AssemblyVersioning
 		/// </summary>
 		public String BuildConfiguration { get; internal set; }
 
-		//TODO: consider adding flexibility so users could define themselves, what is prerelease and what is not.
-		public Boolean IsPrerelease
-		{
-			get
-			{
-				//convention-based:
-				//		*Release* -> NOT prerelease
-				//		everything else (including Debug) IS prerelease.
-				return !(BuildConfiguration ?? "").ToLower().Contains("release");
-			}
-		}
+		/// <summary>
+		/// Indicator if given package is production-ready or prerelease (if supported by generator).
+		/// </summary>
+		public Boolean IsPrerelease {get; internal set;}
 
 		/// <summary>
 		/// IVersionGenerator type dependent argument provided from user configuration.

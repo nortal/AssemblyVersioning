@@ -43,6 +43,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 		public ITaskItem OutputFile { get; set; }
 
 		public String BuildConfiguration { get; set; }
+		public Boolean IsPrerelease { get; set; }
 
 		public String GeneratorForFileVersion { get; set; }
 		public String GeneratorForInformationalVersion { get; set; }
@@ -77,6 +78,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 			var context = new VersionGenerationContext();
 			context.BaseVersion = BaseVersionExtractor.Extract(this.Log, this.BaseVersionFile);
 			context.BuildConfiguration = this.BuildConfiguration;
+			context.IsPrerelease = this.IsPrerelease;
 			return context;
 		}
 

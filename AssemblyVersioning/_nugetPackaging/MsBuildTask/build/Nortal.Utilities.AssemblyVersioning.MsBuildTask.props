@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Defines properties which can be overrode in project props file -->
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<AssemblyVersioningIsPrerelease >True</AssemblyVersioningIsPrerelease>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' != 'Debug'"> <!-- Release and all new configurations are by default considered production releases. -->
+		<AssemblyVersioningIsPrerelease>False</AssemblyVersioningIsPrerelease>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AssemblyVersioningBuildConfiguration>$(Configuration)</AssemblyVersioningBuildConfiguration>
+	</PropertyGroup>
+</Project>
