@@ -67,8 +67,20 @@ namespace UnitTests
 
 		[TestMethod]
 		[TestCategory("Resolver")]
+		public void CheckResolveByName_GeneratorShortNameNoArgument()
+		{
+			const String name = "HumanReadable2SlotTimestamp";
+			var context = new VersionGenerationContext();
+			var generator = GeneratorResolver.ResolveWithArgument(name, context);
+
+			Assert.IsNotNull(generator);
+			Assert.IsInstanceOfType(generator, typeof(HumanReadable2SlotTimestampGenerator), "Resolved type does not match: {0}", generator.GetType().Name);
+		}
+
+		[TestMethod]
+		[TestCategory("Resolver")]
 		[ExpectedException(typeof(InvalidOperationException))]
-		public void CheckResolvingUsingGeneratorName()
+		public void CheckResolvingUsingInvalidGeneratorName()
 		{
 			var context = new VersionGenerationContext();
 			var generator = GeneratorResolver.ResolveWithArgument("NosuchgeneratorExists:argument", context);

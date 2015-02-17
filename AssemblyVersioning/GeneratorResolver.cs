@@ -49,14 +49,15 @@ namespace Nortal.Utilities.AssemblyVersioning
 		/// <summary>
 		/// Scans included generators and tries to find a match for provided generator name.
 		/// </summary>
-		/// <param name="nameWithArgument"></param>
+		/// <param name="nameWithArgument">name as provided by MsBuild, may contain argument separated by colon.</param>
+		/// <param name="context">Context to storage generator argument in.</param>
 		/// <returns></returns>
 		public static IVersionGenerator ResolveWithArgument(String nameWithArgument, VersionGenerationContext context)
 		{
 			if (context == null) { throw new ArgumentNullException("context"); }
 			if (String.IsNullOrEmpty(nameWithArgument)) { return new SkipVersionGenerator(); }
 			// argument is separated from name by colon. Name cannot contain special symbols:
-			Regex regex = new Regex("^(?<namePart>[a-zA-Z]+)(:(?<argumentPart>.+))?$");
+			Regex regex = new Regex(@"^(?<namePart>[a-zA-Z\d]+)(:(?<argumentPart>.+))?$");
 			var match = regex.Match(nameWithArgument);
 			if (match.Success)
 			{
@@ -65,8 +66,9 @@ namespace Nortal.Utilities.AssemblyVersioning
 				return ResolveByName(namePart);
 			}
 
-			context.VersionGenerationArgument = nameWithArgument; // generator name was omitted, everything is context.
-			return new CustomVersionGenerator(); // input not recognized. Assume custom context.
+			//special case: when input does not match the format, then it is to be considered a format for CustomVersionGenerator:
+			context.VersionGenerationArgument = nameWithArgument; //everything is context.
+			return new CustomVersionGenerator();
 		}
 
 		private static IVersionGenerator ResolveByName(String name)
