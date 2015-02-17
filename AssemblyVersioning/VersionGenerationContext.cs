@@ -20,11 +20,22 @@ using System;
 
 namespace Nortal.Utilities.AssemblyVersioning
 {
+	/// <summary>
+	/// Contains all available data that can be used as input for generating version numbers.
+	/// </summary>
 	public sealed class VersionGenerationContext
 	{
+		/// <summary>
+		/// Version as parsed from AssemblyVersion attribute of target project AssemblyInfo.cs file.
+		/// </summary>
 		public Version BaseVersion { get; internal set; }
+
+		/// <summary>
+		/// Visual studio build configuration name (ex: Debug/Release/..).
+		/// </summary>
 		public String BuildConfiguration { get; internal set; }
 
+		//TODO: consider adding flexibility so users could define themselves, what is prerelease and what is not.
 		public Boolean IsPrerelease
 		{
 			get
@@ -35,5 +46,10 @@ namespace Nortal.Utilities.AssemblyVersioning
 				return !(BuildConfiguration ?? "").ToLower().Contains("release");
 			}
 		}
+
+		/// <summary>
+		/// IVersionGenerator type dependent argument provided from user configuration.
+		/// </summary>
+		public String VersionGenerationArgument { get; set; }
 	}
 }

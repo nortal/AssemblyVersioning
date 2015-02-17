@@ -27,25 +27,13 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 	public class HumanReadable2SlotTimestampGenerator : SystemVersionGeneratorBase
 	{
 
-		internal static int BuildDatePart(DateTime forTime)
-		{
-			//last digit mod 6 (max value in version component is 65536). Ex: 2016 -> 6; 2017 -> 0
-			int yearpart = forTime.Year % 10 % 7;
-			return yearpart * 10000 + 100 * forTime.Month + forTime.Day;
-		}
-
-		internal static int BuildTimePart(DateTime forTime)
-		{
-			return forTime.Hour * 100 + forTime.Minute;
-		}
-
 		public override Version GenerateSystemVersion(VersionGenerationContext context)
 		{
 			if (context == null) { throw new ArgumentNullException("context"); }
 
 			DateTime buildDate = DateTime.UtcNow;
-			var build = BuildDatePart(buildDate);
-			var revision = BuildTimePart(buildDate);
+			var build = DateToVersionNumberCalculation.BuildDatePart(buildDate);
+			var revision = DateToVersionNumberCalculation.BuildTimePart(buildDate);
 
 			var baseVersion = context.BaseVersion;
 			return new Version(baseVersion.Major, baseVersion.Minor, build, revision);

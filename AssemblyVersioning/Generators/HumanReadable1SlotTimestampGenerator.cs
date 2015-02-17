@@ -34,7 +34,7 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 			var baseVersion = context.BaseVersion;
 
 			//replace just the revision
-			int revision = BuildDatePart(now); //reuse the logic already built for HumanReadable2SlotTimestampGenerator
+			int revision = DateToVersionNumberCalculation.BuildDatePart(now); //reuse the logic already built for HumanReadable2SlotTimestampGenerator
 
 			return new Version(baseVersion.Major, baseVersion.Minor, baseVersion.Build, revision);
 		}
