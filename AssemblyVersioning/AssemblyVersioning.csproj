@@ -62,6 +62,7 @@
     <Compile Include="GeneratorResolver.cs" />
     <Compile Include="Generators\CustomVersionGenerator.cs" />
     <Compile Include="Generators\CustomVersionGeneratorModel.cs" />
+    <Compile Include="Generators\DateToVersionNumberCalculation.cs" />
     <Compile Include="Generators\NugetSemanticVersionGenerator.cs" />
     <Compile Include="Generators\HumanReadableBuildInfoGenerator.cs" />
     <Compile Include="GlobalSuppressions.cs" />

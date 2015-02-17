@@ -24,6 +24,7 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 	{
 		public CustomizedVersionModel(VersionGenerationContext context)
 		{
+			if (context == null) { throw new ArgumentNullException("context"); }
 			this.Context = context;
 		}
 
@@ -40,9 +41,19 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 
 		// date components:
 		public DateTime Now { get { return this.FixedNow; } }
-		public DateTime UtcNow { get { return this.FixedUtcNow; } }
+		public int DateNumber { get { return DateToVersionNumberCalculation.BuildDatePart(this.FixedNow); } }
+		public int TimeNumber { get { return DateToVersionNumberCalculation.BuildTimePart(this.FixedNow); } }
 
+		public DateTime UtcNow { get { return this.FixedUtcNow; } }
+		public int UtcDateNumber { get { return DateToVersionNumberCalculation.BuildDatePart(this.FixedUtcNow); } }
+		public int UtcTimeNumber { get { return DateToVersionNumberCalculation.BuildTimePart(this.FixedUtcNow); } }
+
+		// user context:
 		public String BuildConfiguration { get { return this.Context.BuildConfiguration; } }
 
+		// Environment
+		public static String Domain { get { return Environment.UserDomainName; } }
+		public static String UserName { get { return Environment.UserName; } }
+		public static String MachineName { get { return Environment.MachineName; } }
 	}
 }

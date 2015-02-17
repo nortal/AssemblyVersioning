@@ -40,8 +40,22 @@ namespace UnitTests
 				ShimDateTime.NowGet = () => new DateTime(2016, 12, 31, 10, 20, 30);
 				String format = @"prefix {Now:yyyy|MM|dd-hh|mm|ss} suffix";
 				var result = CalculateVersion<CustomVersionGenerator>(new Version(), format);
+				Assert.AreEqual("prefix 2016|12|31-10|20|30 suffix", result);
+			}
+		}
 
-				//retains 3 slots:
+		/// <summary>
+		/// Verifies that template fields accept and respect format strings.
+		/// </summary>
+		[TestMethod]
+		[TestCategory("CustomVersionGenerator")]
+		public void CheckCustomFields_UtcNowWithCustomFormat()
+		{
+			using (ShimsContext.Create())
+			{
+				ShimDateTime.UtcNowGet = () => new DateTime(2016, 12, 31, 10, 20, 30);
+				String format = @"prefix {UtcNow:yyyy|MM|dd-hh|mm|ss} suffix";
+				var result = CalculateVersion<CustomVersionGenerator>(new Version(), format);
 				Assert.AreEqual("prefix 2016|12|31-10|20|30 suffix", result);
 			}
 		}
