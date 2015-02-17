@@ -89,6 +89,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Nortal.Utilities.AssemblyVersioning.MsBuildTask.props" />
+    <None Include="_nugetPackaging\MsBuildTask\build\Nortal.Utilities.AssemblyVersioning.MsBuildTask.props" />
     <None Include="_nugetPackaging\PackageAllRelease.bat" />
     <None Include="_nugetPackaging\Dll\Nortal.Utilities.AssemblyVersioning.nuspec">
       <SubType>Designer</SubType>
@@ -112,7 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE_Apache2.0.txt" />
-    <Content Include="_nugetPackaging\MsBuildTask\Readme.OnInstall.txt" />
+    <Content Include="_nugetPackaging\MsBuildTask\Readme.txt" />
     <None Include="_nugetPackaging\MsBuildTask\tools\install.ps1" />
   </ItemGroup>
   <ItemGroup />
