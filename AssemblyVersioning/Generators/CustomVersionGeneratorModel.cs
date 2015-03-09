@@ -52,8 +52,8 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 		public String BuildConfiguration { get { return this.Context.BuildConfiguration; } }
 
 		// Environment
-		public static String Domain { get { return Environment.UserDomainName; } }
-		public static String UserName { get { return Environment.UserName; } }
-		public static String MachineName { get { return Environment.MachineName; } }
+		public String Domain { get { return Environment.UserDomainName; } }
+		public String UserName { get { return Environment.UserName; } }
+		public String MachineName { get { return Environment.MachineName; } }
 	}
 }
