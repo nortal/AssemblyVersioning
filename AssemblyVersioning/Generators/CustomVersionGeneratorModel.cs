@@ -52,8 +52,16 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 		public String BuildConfiguration { get { return this.Context.BuildConfiguration; } }
 
 		// Environment
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
 		public String Domain { get { return Environment.UserDomainName; } }
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
 		public String UserName { get { return Environment.UserName; } }
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
 		public String MachineName { get { return Environment.MachineName; } }
+
+		//Custom fields that are filled from MsBuild side
+		public String CustomField1 { get { return this.Context.CustomField1; } }
+		public String CustomField2 { get { return this.Context.CustomField2; } }
+		public String CustomField3 { get { return this.Context.CustomField3; } }
 	}
 }

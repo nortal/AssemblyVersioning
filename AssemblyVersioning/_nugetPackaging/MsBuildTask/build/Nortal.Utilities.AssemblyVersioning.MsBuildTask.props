@@ -12,5 +12,8 @@
 
 	<PropertyGroup>
 		<AssemblyVersioningBuildConfiguration>$(Configuration)</AssemblyVersioningBuildConfiguration>
+		<AssemblyVersioningCustomField1></AssemblyVersioningCustomField1>
+		<AssemblyVersioningCustomField2></AssemblyVersioningCustomField2>
+		<AssemblyVersioningCustomField3></AssemblyVersioningCustomField3>
 	</PropertyGroup>
 </Project>

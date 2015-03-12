@@ -44,5 +44,9 @@ namespace Nortal.Utilities.AssemblyVersioning
 		/// IVersionGenerator type dependent argument provided from user configuration.
 		/// </summary>
 		public String VersionGenerationArgument { get; set; }
+
+		public String CustomField1 { get; set; }
+		public String CustomField2 { get; set; }
+		public String CustomField3 { get; set; }
 	}
 }

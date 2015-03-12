@@ -22,6 +22,9 @@
 			GeneratorForFileVersion="$(GeneratorForFileVersion)"
 			GeneratorForInformationalVersion="$(GeneratorForInformationalVersion)"
 			GeneratorForConfiguration="$(GeneratorForConfiguration)"
+			CustomField1="$(AssemblyVersioningCustomField1)"
+			CustomField2="$(AssemblyVersioningCustomField2)"
+			CustomField3="$(AssemblyVersioningCustomField3)"
 		/>
 
 		<!-- dynamically add the generated file to compiled set -->

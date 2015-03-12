@@ -49,6 +49,10 @@ namespace Nortal.Utilities.AssemblyVersioning
 		public String GeneratorForInformationalVersion { get; set; }
 		public String GeneratorForConfiguration { get; set; }
 
+		public String CustomField1 { get; set; }
+		public String CustomField2 { get; set; }
+		public String CustomField3 { get; set; }
+
 		/// <summary>
 		/// The entry-point to task functionality.
 		/// </summary>
@@ -79,6 +83,9 @@ namespace Nortal.Utilities.AssemblyVersioning
 			context.BaseVersion = BaseVersionExtractor.Extract(this.Log, this.BaseVersionFile);
 			context.BuildConfiguration = this.BuildConfiguration;
 			context.IsPrerelease = this.IsPrerelease;
+			context.CustomField1 = this.CustomField1;
+			context.CustomField2 = this.CustomField2;
+			context.CustomField3 = this.CustomField3;
 			return context;
 		}
 
