@@ -2,26 +2,29 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>Nortal.Utilities.AssemblyVersioning.MsBuildTask</id>
-		<version>0.10.1</version>
+		<version>0.11.0</version>
 		<title>Nortal.Utilities.AssemblyVersioning.MsBuildTask</title>
 		<authors>Imre Pühvel</authors>
 		<owners>Nortal AS</owners>
 		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<projectUrl>https://github.com/nortal/AssemblyVersioning</projectUrl>
-		<description>Sets up a c# project to automatically generate extended version information attributes on each build.</description>
-		<releaseNotes>
-			Build: $configuration$
-		</releaseNotes>
-		<copyright>Copyright 2013-2014 Imre Pühvel, AS Nortal.</copyright>
+		<summary>Automatically generates extra version and build information to your assembly dll on each compile.</summary>
+		<description>Sets up a c# project to automatically generate extended version information attributes on each build using various predefined or customized patterns.
+			Can automatically control content for FileVersionAttribute, InformationalVersionAttribute and ConfigurationAttribute to provide developers the tools to always know for sure where and how a binary was created by looking only at the assembly dll.
+			Developers can easily configure which algorithms to use and extend existing logic using standard MsBuild functionality.
+		</description>
+		<releaseNotes></releaseNotes>
+		<copyright>Copyright 2013-2015 Imre Pühvel, AS Nortal.</copyright>
 		<tags>nortal assembly versioning msbuild c#</tags>
 		<iconUrl>http://www.nortal.com/_gfx/logo-32x32.png</iconUrl>
 	</metadata>
 	<files>
-		<file src="Readme.OnInstall.txt" target="Readme.txt" />
+		<file src="Readme.txt" target="" />
 		<file src="build\*.*" target="build\" />
 		<file src="tools\*.*" target="tools\" />
 		<file src="content\Properties\*.*" target="content\Properties\" />
 		<file src="..\..\bin\$configuration$\Nortal.Utilities.AssemblyVersioning.dll" target="build\" />
+		<file src="..\..\bin\$configuration$\Nortal.Utilities.TextTemplating.dll" target="build\" />
 	</files>
 </package>

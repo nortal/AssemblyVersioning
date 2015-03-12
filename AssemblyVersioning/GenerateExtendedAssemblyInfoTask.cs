@@ -16,12 +16,12 @@
 	This file is from project https://github.com/NortalLTD/AssemblyVersioning, Nortal.Utilities.AssemblyVersioning, file 'GenerateExtendedAssemblyInfoTask.cs'.
 */
 
+using Microsoft.Build.Framework;
+using Microsoft.Build.Utilities;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 
 namespace Nortal.Utilities.AssemblyVersioning
 {
@@ -43,11 +43,20 @@ namespace Nortal.Utilities.AssemblyVersioning
 		public ITaskItem OutputFile { get; set; }
 
 		public String BuildConfiguration { get; set; }
+		public Boolean IsPrerelease { get; set; }
 
 		public String GeneratorForFileVersion { get; set; }
 		public String GeneratorForInformationalVersion { get; set; }
 		public String GeneratorForConfiguration { get; set; }
 
+		public String CustomField1 { get; set; }
+		public String CustomField2 { get; set; }
+		public String CustomField3 { get; set; }
+
+		/// <summary>
+		/// The entry-point to task functionality.
+		/// </summary>
+		/// <returns></returns>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
 		public override bool Execute()
 		{
@@ -73,6 +82,10 @@ namespace Nortal.Utilities.AssemblyVersioning
 			var context = new VersionGenerationContext();
 			context.BaseVersion = BaseVersionExtractor.Extract(this.Log, this.BaseVersionFile);
 			context.BuildConfiguration = this.BuildConfiguration;
+			context.IsPrerelease = this.IsPrerelease;
+			context.CustomField1 = this.CustomField1;
+			context.CustomField2 = this.CustomField2;
+			context.CustomField3 = this.CustomField3;
 			return context;
 		}
 
@@ -90,8 +103,9 @@ namespace Nortal.Utilities.AssemblyVersioning
 			where TAttribute: Attribute
 		{
 			this.Log.LogMessage("Generating content for '{0}' using algorithm '{1}'..", typeof(TAttribute).Name, generatorName);
-			var generator = GeneratorResolver.ResolveByName(generatorName);
+			var generator = GeneratorResolver.ResolveWithArgument(generatorName, context);
 			Debug.Assert(generator != null);
+
 			String row = AssemblyInfoFileCreator.GenerateAttributeRow<TAttribute>(generator, context);
 			return row;
 		}

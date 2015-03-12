@@ -56,14 +56,14 @@ namespace Nortal.Utilities.AssemblyVersioning
 		{
 			if (version == null) { return null; }
 
-			const String pattern = @"[assembly: {0}(""{1}"")] // algorithm: {2}
+			const String pattern = @"[assembly: {0}(@""{1}"")] // algorithm: {2}
 ";
 			String attributeName = typeof(TAttribute).Name
 				.Replace(typeof(Attribute).Name, ""); //without Attribute at end.
 
 			return String.Format(pattern,
 				attributeName,
-				version,
+				version.Replace(@"""", @""""""), // support version content with double-quotes.
 				generator);
 		}
 	}

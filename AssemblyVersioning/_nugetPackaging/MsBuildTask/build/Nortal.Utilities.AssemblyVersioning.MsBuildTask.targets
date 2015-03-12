@@ -4,10 +4,11 @@
 	<Import Project="$(MSBuildProjectDirectory)\Properties\Nortal.Utilities.AssemblyVersioning.MsBuildTask.props" />
 	<Target Name="NortalAssemblyVersioning" BeforeTargets="CoreCompile">
 		<Message Text="Regenerating file with extra assembly information .. " />
-		<Message Importance="low" Text="Configuration: $(Configuration)" />
 		<Message Importance="low" Text="GeneratorForFileVersion: $(GeneratorForFileVersion)" />
 		<Message Importance="low" Text="GeneratorForInformationalVersion: $(GeneratorForInformationalVersion)" />
 		<Message Importance="low" Text="GeneratorForConfiguration: $(GeneratorForConfiguration)" />
+		<Message Importance="low" Text="AssemblyVersioningBuildConfiguration: $(AssemblyVersioningBuildConfiguration)" />
+		<Message Importance="low" Text="AssemblyVersioningIsPreRelease: $(AssemblyVersioningIsPreRelease)" />
 
 		<!-- Remove read-only attribute for build servers -->
 		<Exec Command="attrib -R &quot;$(MSBuildProjectDirectory)\Properties\AssemblyInformationalVersion.gen.cs&quot;" />
@@ -16,10 +17,14 @@
 		<GenerateExtendedAssemblyInfoTask
 			BaseVersionFile="Properties\AssemblyInfo.cs"
 			OutputFile="Properties\AssemblyInformationalVersion.gen.cs"
-			BuildConfiguration ="$(Configuration)"
+			BuildConfiguration="$(AssemblyVersioningBuildConfiguration)"
+			IsPrerelease="$(AssemblyVersioningIsPrerelease)"
 			GeneratorForFileVersion="$(GeneratorForFileVersion)"
 			GeneratorForInformationalVersion="$(GeneratorForInformationalVersion)"
 			GeneratorForConfiguration="$(GeneratorForConfiguration)"
+			CustomField1="$(AssemblyVersioningCustomField1)"
+			CustomField2="$(AssemblyVersioningCustomField2)"
+			CustomField3="$(AssemblyVersioningCustomField3)"
 		/>
 
 		<!-- dynamically add the generated file to compiled set -->
