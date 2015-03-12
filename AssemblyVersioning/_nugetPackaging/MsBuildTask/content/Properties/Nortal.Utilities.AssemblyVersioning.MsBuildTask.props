@@ -20,7 +20,7 @@ Tokens available for use:
 			{Major} {Minor} {Build} {Revision}
 			{Domain} {UserName} {MachineName} {BuildConfiguration}
 			{Now} {NowDateNumber} {NowTimeNumber} {UtcNow} {UtcNowDateNumber} {UtcNowTimeNumber}
-Check https://github.com/nortal/AssemblyVersioning/ for more documentation.
+Check https://github.com/nortal/AssemblyVersioning/wiki/Generator-options for more documentation.
 		-->
 	</PropertyGroup>
 </Project>
