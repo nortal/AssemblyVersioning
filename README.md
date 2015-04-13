@@ -1,3 +1,6 @@
+![Nuget version](http://img.shields.io/nuget/v/Nortal.Utilities.AssemblyVersioning.MsBuildTask.svg)
+![Nuget downloads](http://img.shields.io/nuget/dt/Nortal.Utilities.AssemblyVersioning.MsBuildTask.svg)
+
 Nortal.Utilities.AssemblyVersioning
 ==================
 
@@ -11,7 +14,7 @@ Licenced under Apache Licence v2.0.
 Requirements
 -------------
 MSBuild task is built using Microsoft .Net Framework 4.0. 
-Can be applied to projects of any .Net version as long as MsBuild 4.0 or newer is used (Visual Studio 2010+).
+Can be applied to c# projects of any .Net version as long as MsBuild 4.0 or newer is used (Visual Studio 2010+).
 
 Functionality
 -------------
