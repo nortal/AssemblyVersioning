@@ -25,7 +25,7 @@ Tool uses AssemblyVersionAttribute value as input and can automatically create t
 
 User can configure which pattern is used for each target attribute. Available patterns:
 * HumanReadable2SlotTimestamp
-  * 1.23.{5-number-date}.{time}.    Example: 1.23.30423.2059
+  * 1.23.{5-number-date}.{time}.    Example: 1.23.30423.2059 (Read: v1.23, built on 2013-04-23 20:59)
 * HumanReadable1SlotTimestamp
   * 1.23.67.{5-number-date}
 * HumanReadableBuildInfo
