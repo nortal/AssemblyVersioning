@@ -35,6 +35,8 @@ User can configure which pattern is used for each target attribute. Available pa
 * Skip
   * Attribute will not be generated
 
+Detailed information about usable generators can be found from <a href="https://github.com/nortal/AssemblyVersioning/wiki/Generator-options">wiki</a>.
+
 Getting started
 ---------------
 To install the MsBuild task over <a href="https://nuget.org/packages/Nortal.Utilities.AssemblyVersioning.MsBuildTask/">Nuget</a>, run the following command in the  Package Manager Console 
