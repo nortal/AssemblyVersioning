@@ -11,6 +11,8 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<AssemblyVersioningBaseVersionFile>Properties\AssemblyInfo.cs</AssemblyVersioningBaseVersionFile>
+		<AssemblyVersioningOutputFile>Properties\AssemblyInformationalVersion.gen.cs</AssemblyVersioningOutputFile>
 		<AssemblyVersioningBuildConfiguration>$(Configuration)</AssemblyVersioningBuildConfiguration>
 		<AssemblyVersioningCustomField1></AssemblyVersioningCustomField1>
 		<AssemblyVersioningCustomField2></AssemblyVersioningCustomField2>
