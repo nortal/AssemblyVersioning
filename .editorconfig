@@ -1,0 +1,78 @@
+root = true
+
+[*.{cs,config}]
+charset = utf-8
+end_of_line = crlf
+indent_style = tab
+insert_final_newline = false
+trim_trailing_whitespace = true
+
+[*.cs]
+# this-prefixes should be used where they improve readability by explicitly stating the scope of the following member. 
+dotnet_style_qualification_for_field = true:none
+dotnet_style_qualification_for_property = true:none
+dotnet_style_qualification_for_method = true:none
+dotnet_style_qualification_for_event = true:none
+
+# You should usally prefer 'int' over 'Int32' etc in variable declarations, but 'String'/'Boolean' and the like are also accepted.
+dotnet_style_predefined_type_for_locals_parameters_members = true: none 
+# Methods and other members belonging to a class should be accessed via class-like syntax, example: 'String.IsNullOrEmpty(..)' etc.
+dotnet_style_predefined_type_for_member_access = false: suggestion 
+
+# anonymous or arbitrarily numbered tuple members are error-prone to work with and hence should be avoided.
+dotnet_style_explicit_tuple_names = true:warning  
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_null_propagation  = true:suggestion
+
+# use of var is encouraged where it is obvious but not anywhere - if explicit type name improves readability then explicit type name should be used. Both allowed.
+csharp_style_var_for_built_in_types = false:none
+csharp_style_var_when_type_is_apparent = true:none
+csharp_style_var_elsewhere = true:none
+
+# curly initialization syntax is preferred in simple scenarios (a few literals), but not enforced for members generated using mehtods, etc. Separate statement provides cleaner stack-traces for debugging.
+dotnet_style_object_initializer = true:none
+dotnet_style_collection_initializer = true:none
+
+# code style is mostly VS default. Duplicated here for expressiveness sake
+csharp_style_expression_bodied_methods = false:none
+# constructors are important and few enough to warrant explicit body scope.
+csharp_style_expression_bodied_constructors = false:warning 
+# almost never used.
+csharp_style_expression_bodied_operators = false:none 
+# =>-syntax is often shorter. But its use is not forced.
+csharp_style_expression_bodied_properties = true:suggestion 
+csharp_style_expression_bodied_indexers = true:suggestion
+csharp_style_expression_bodied_accessors = true:suggestion
+
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+csharp_style_inlined_variable_declaration = true:suggestion
+csharp_prefer_simple_default_expression = true:suggestion
+csharp_style_throw_expression = true:suggestion
+csharp_style_conditional_delegate_call = true:suggestion
+
+csharp_prefer_braces = true:warning
+
+#prefer clean alphabetic order.
+dotnet_sort_system_directives_first = false:suggestion 
+
+# code style is mostly VS default. Duplicated here for expressiveness sake
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types  = true
+csharp_new_line_between_query_expression_clauses = true
+
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+csharp_indent_labels = one_less
+csharp_space_after_cast = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_between_parentheses = false
+
+csharp_preserve_single_line_statements = true
+csharp_preserve_single_line_blocks = true
