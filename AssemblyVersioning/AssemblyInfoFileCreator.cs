@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -49,7 +49,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 			where TAttribute : Attribute
 		{
 			if (generator == null) { throw new ArgumentNullException("generator"); }
-			
+
 			String version = generator.GenerateVersionInfoFrom(context);
 			var row = GenerateAttributeRow<TAttribute>(generator.GetType().Name, version);
 			return row;

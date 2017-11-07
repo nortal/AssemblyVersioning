@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,7 +30,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "AssemblyInfo", Justification = "Part of folder path")]
 		internal static Version Extract(TaskLoggingHelper logger, ITaskItem baseVersionItem)
 		{
-			if (baseVersionItem == null) { throw new ArgumentNullException("baseVersionItem"); }
+			if (baseVersionItem == null) { throw new ArgumentNullException(nameof(baseVersionItem)); }
 
 			var pathToBaseVersionFile = baseVersionItem.ItemSpec;
 			if (!File.Exists(pathToBaseVersionFile))
@@ -57,7 +57,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 				var assemblyVersion = versionLineCandidate.Split('"')[1];
 
 				logger.LogMessage(MessageImportance.Normal, "Using base version: {0}.", assemblyVersion);
-				Version version = new Version(assemblyVersion);
+				var version = new Version(assemblyVersion);
 				return version;
 			}
 			catch (Exception exception)

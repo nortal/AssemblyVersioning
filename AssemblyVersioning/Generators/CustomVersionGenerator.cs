@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,14 +28,14 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 	{
 		public string GenerateVersionInfoFrom(VersionGenerationContext context)
 		{
-			if (context == null) { throw new ArgumentNullException("context"); }
+			if (context == null) { throw new ArgumentNullException(nameof(context)); }
 
 			String customFormat = context.VersionGenerationArgument;
 			if (String.IsNullOrEmpty(customFormat)) { throw new ArgumentException("Custom format requested but no format was provided in VersionGenerationArgument.", "context"); }
 
 			var model = new CustomizedVersionModel(context);
 
-			SyntaxSettings settings = new SyntaxSettings()
+			var settings = new SyntaxSettings()
 			{
 				BeginTag = "{",
 				EndTag = "}",

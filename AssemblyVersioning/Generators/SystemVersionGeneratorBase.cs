@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,7 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 		String IVersionGenerator.GenerateVersionInfoFrom(VersionGenerationContext context)
 		{
 			Version version = GenerateSystemVersion(context);
-			return version != null ? version.ToString() : null;
+			return version?.ToString();
 		}
 		#endregion
 	}

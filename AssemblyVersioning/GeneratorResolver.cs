@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,7 +54,8 @@ namespace Nortal.Utilities.AssemblyVersioning
 		/// <returns></returns>
 		public static IVersionGenerator ResolveWithArgument(String nameWithArgument, VersionGenerationContext context)
 		{
-			if (context == null) { throw new ArgumentNullException("context"); }
+			if (context == null) { throw new ArgumentNullException(nameof(context)); }
+
 			if (String.IsNullOrEmpty(nameWithArgument)) { return new SkipVersionGenerator(); }
 			// argument is separated from name by colon. Name cannot contain special symbols:
 			Regex regex = new Regex(@"^(?<namePart>[a-zA-Z\d]+)(:(?<argumentPart>.+))?$");
