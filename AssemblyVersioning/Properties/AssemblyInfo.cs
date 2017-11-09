@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("0.10.1.0")]
+[assembly: AssemblyVersion("0.12.0.0")]
 
 [assembly: AssemblyTitle("Nortal.Utilities.AssemblyVersioning")]
 [assembly: AssemblyDescription("Contains utilities for generating assembly version numbers.")]

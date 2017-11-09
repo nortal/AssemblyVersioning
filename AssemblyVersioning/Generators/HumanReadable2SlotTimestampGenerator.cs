@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +29,7 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 
 		public override Version GenerateSystemVersion(VersionGenerationContext context)
 		{
-			if (context == null) { throw new ArgumentNullException("context"); }
+			if (context == null) { throw new ArgumentNullException(nameof(context)); }
 
 			DateTime buildDate = DateTime.UtcNow;
 			var build = DateToVersionNumberCalculation.BuildDatePart(buildDate);

@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,8 +24,7 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 	{
 		public CustomizedVersionModel(VersionGenerationContext context)
 		{
-			if (context == null) { throw new ArgumentNullException("context"); }
-			this.Context = context;
+			this.Context = context ?? throw new ArgumentNullException(nameof(context));
 		}
 
 		// storage for model properties
@@ -34,34 +33,34 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 		private DateTime FixedUtcNow = DateTime.UtcNow; // to ensure it does not change between multiple calls
 
 		// BaseVersion parts:
-		public int Major { get { return this.Context.BaseVersion.Major; } }
-		public int Minor { get { return this.Context.BaseVersion.Minor; } }
-		public int Build { get { return this.Context.BaseVersion.Build; } }
-		public int Revision { get { return this.Context.BaseVersion.Revision; } }
+		public int Major => this.Context.BaseVersion.Major;
+		public int Minor => this.Context.BaseVersion.Minor;
+		public int Build => this.Context.BaseVersion.Build;
+		public int Revision => this.Context.BaseVersion.Revision;
 
 		// date components:
-		public DateTime Now { get { return this.FixedNow; } }
-		public int DateNumber { get { return DateToVersionNumberCalculation.BuildDatePart(this.FixedNow); } }
-		public int TimeNumber { get { return DateToVersionNumberCalculation.BuildTimePart(this.FixedNow); } }
+		public DateTime Now => this.FixedNow;
+		public int DateNumber => DateToVersionNumberCalculation.BuildDatePart(this.FixedNow);
+		public int TimeNumber => DateToVersionNumberCalculation.BuildTimePart(this.FixedNow);
 
-		public DateTime UtcNow { get { return this.FixedUtcNow; } }
-		public int UtcDateNumber { get { return DateToVersionNumberCalculation.BuildDatePart(this.FixedUtcNow); } }
-		public int UtcTimeNumber { get { return DateToVersionNumberCalculation.BuildTimePart(this.FixedUtcNow); } }
+		public DateTime UtcNow => this.FixedUtcNow;
+		public int UtcDateNumber => DateToVersionNumberCalculation.BuildDatePart(this.FixedUtcNow);
+		public int UtcTimeNumber => DateToVersionNumberCalculation.BuildTimePart(this.FixedUtcNow);
 
 		// user context:
-		public String BuildConfiguration { get { return this.Context.BuildConfiguration; } }
+		public String BuildConfiguration => this.Context.BuildConfiguration;
 
 		// Environment
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-		public String Domain { get { return Environment.UserDomainName; } }
+		public String Domain => Environment.UserDomainName;
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-		public String UserName { get { return Environment.UserName; } }
+		public String UserName => Environment.UserName;
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-		public String MachineName { get { return Environment.MachineName; } }
+		public String MachineName => Environment.MachineName;
 
 		//Custom fields that are filled from MsBuild side
-		public String CustomField1 { get { return this.Context.CustomField1; } }
-		public String CustomField2 { get { return this.Context.CustomField2; } }
-		public String CustomField3 { get { return this.Context.CustomField3; } }
+		public String CustomField1 => this.Context.CustomField1;
+		public String CustomField2 => this.Context.CustomField2;
+		public String CustomField3 => this.Context.CustomField3;
 	}
 }

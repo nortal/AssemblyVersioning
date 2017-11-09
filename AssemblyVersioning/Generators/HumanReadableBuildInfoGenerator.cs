@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ namespace Nortal.Utilities.AssemblyVersioning.Generators
 
 		public string GenerateVersionInfoFrom(VersionGenerationContext context)
 		{
-			if (context == null) { throw new ArgumentNullException("context"); }
+			if (context == null) { throw new ArgumentNullException(nameof(context)); }
 			
 			return String.Format("{0} (on UTC{1} by {2} at {3})",
 				context.BuildConfiguration,

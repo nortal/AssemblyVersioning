@@ -65,7 +65,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 			{
 				var context = InitializeContext();
 				var generatedFileContent = GenerateInformationalVersionInfoFile(context);
-				
+
 				Log.LogMessage("Overwriting extended assembly version information in file: {0} ..", this.OutputFile.ItemSpec);
 				File.WriteAllText(this.OutputFile.ItemSpec, generatedFileContent);
 				return true;
@@ -92,7 +92,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 		internal String GenerateInformationalVersionInfoFile(VersionGenerationContext context)
 		{
 			String contents = AssemblyInfoFileCreator.GetHeader(context)
-				+ GenerateAttributeLine<AssemblyInformationalVersionAttribute>(context, GeneratorForInformationalVersion) 
+				+ GenerateAttributeLine<AssemblyInformationalVersionAttribute>(context, GeneratorForInformationalVersion)
 				+ GenerateAttributeLine<AssemblyFileVersionAttribute>(context, GeneratorForFileVersion)
 				+ GenerateAttributeLine<AssemblyConfigurationAttribute>(context, GeneratorForConfiguration);
 
@@ -100,7 +100,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 		}
 
 		internal String GenerateAttributeLine<TAttribute>(VersionGenerationContext context, String generatorName)
-			where TAttribute: Attribute
+			where TAttribute : Attribute
 		{
 			this.Log.LogMessage("Generating content for '{0}' using algorithm '{1}'..", typeof(TAttribute).Name, generatorName);
 			var generator = GeneratorResolver.ResolveWithArgument(generatorName, context);

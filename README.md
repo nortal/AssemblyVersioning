@@ -1,3 +1,6 @@
+![Nuget version](http://img.shields.io/nuget/v/Nortal.Utilities.AssemblyVersioning.MsBuildTask.svg)
+![Nuget downloads](http://img.shields.io/nuget/dt/Nortal.Utilities.AssemblyVersioning.MsBuildTask.svg)
+
 Nortal.Utilities.AssemblyVersioning
 ==================
 
@@ -11,7 +14,7 @@ Licenced under Apache Licence v2.0.
 Requirements
 -------------
 MSBuild task is built using Microsoft .Net Framework 4.0. 
-Can be applied to projects of any .Net version as long as MsBuild 4.0 or newer is used (Visual Studio 2010+).
+Can be applied to c# projects of any .Net version as long as MsBuild 4.0 or newer is used (Visual Studio 2010+).
 
 Functionality
 -------------
@@ -22,7 +25,7 @@ Tool uses AssemblyVersionAttribute value as input and can automatically create t
 
 User can configure which pattern is used for each target attribute. Available patterns:
 * HumanReadable2SlotTimestamp
-  * 1.23.{5-number-date}.{time}.    Example: 1.23.30423.2059
+  * 1.23.{5-number-date}.{time}.    Example: 1.23.30423.2059 (Read: v1.23, built on 2013-04-23 20:59)
 * HumanReadable1SlotTimestamp
   * 1.23.67.{5-number-date}
 * HumanReadableBuildInfo
@@ -31,6 +34,8 @@ User can configure which pattern is used for each target attribute. Available pa
   * 1.23.67[-{conf}-{date}-{time}]    Examples: 1.23.3 -or- 1.2.3-Debug-20130423-2059
 * Skip
   * Attribute will not be generated
+
+Detailed information about usable generators can be found from <a href="https://github.com/nortal/AssemblyVersioning/wiki/Generator-options">wiki</a>.
 
 Getting started
 ---------------
