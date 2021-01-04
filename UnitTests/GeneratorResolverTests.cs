@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nortal.Utilities.AssemblyVersioning;
@@ -83,8 +83,7 @@ namespace UnitTests
 		public void CheckResolvingUsingInvalidGeneratorName()
 		{
 			var context = new VersionGenerationContext();
-			var generator = GeneratorResolver.ResolveWithArgument("NosuchgeneratorExists:argument", context);
-			
+			GeneratorResolver.ResolveWithArgument("NosuchgeneratorExists:argument", context);
 			//asserting exception
 		}
 

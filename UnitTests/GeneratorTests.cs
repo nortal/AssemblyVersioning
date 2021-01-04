@@ -1,4 +1,4 @@
-﻿using Microsoft.QualityTools.Testing.Fakes;
+using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nortal.Utilities.AssemblyVersioning;
 using Nortal.Utilities.AssemblyVersioning.Generators;
@@ -75,7 +75,7 @@ namespace UnitTests
 			}
 		}
 
-		private Version CalculateSystemVersion<TGenerator>(Version baseVersion)
+		private static Version CalculateSystemVersion<TGenerator>(Version baseVersion)
 			where TGenerator : SystemVersionGeneratorBase
 		{
 			var context = new VersionGenerationContext();
