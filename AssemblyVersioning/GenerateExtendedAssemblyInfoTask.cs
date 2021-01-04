@@ -1,4 +1,4 @@
-﻿/*
+/*
 	Copyright 2013 Imre Pühvel, AS Nortal
 	
 	Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,9 +31,14 @@ namespace Nortal.Utilities.AssemblyVersioning
 	public class GenerateExtendedAssemblyInfoTask : Task
 	{
 		/// <summary>
-		/// if not set assumes assembly info is declared in default file Properties/AssemblyInfo.cs
+		/// Explicitly given base version. Takes precedence over <see cref="BaseVersionFile"/>
 		/// </summary>
-		[Required]
+		public String BaseVersion { get; set; }
+
+		/// <summary>
+		/// File to look for AssemblyVersion attribute. Ignored if <see cref="BaseVersion"/> property is set.
+		/// Defaults to .Net FW default of Properties/AssemblyInfo.cs.
+		/// </summary>
 		public ITaskItem BaseVersionFile { get; set; }
 
 		/// <summary>
@@ -68,7 +73,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 
 				Log.LogMessage("Overwriting extended assembly version information in file: {0} ..", this.OutputFile.ItemSpec);
 				File.WriteAllText(this.OutputFile.ItemSpec, generatedFileContent);
-				return true;
+				return !this.Log.HasLoggedErrors;
 			}
 			catch (System.Exception exception)
 			{
@@ -80,7 +85,7 @@ namespace Nortal.Utilities.AssemblyVersioning
 		private VersionGenerationContext InitializeContext()
 		{
 			var context = new VersionGenerationContext();
-			context.BaseVersion = BaseVersionExtractor.Extract(this.Log, this.BaseVersionFile);
+			context.BaseVersion = BaseVersionExtractor.Extract(this);
 			context.BuildConfiguration = this.BuildConfiguration;
 			context.IsPrerelease = this.IsPrerelease;
 			context.CustomField1 = this.CustomField1;

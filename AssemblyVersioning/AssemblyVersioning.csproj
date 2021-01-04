@@ -54,9 +54,6 @@
   <ItemGroup>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
-    <Reference Include="Nortal.Utilities.TextTemplating">
-      <HintPath>..\packages\Nortal.Utilities.TextTemplating.0.10.0\lib\Nortal.Utilities.TextTemplating.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -92,7 +89,6 @@
     </None>
     <None Include="Properties\Nortal.Utilities.AssemblyVersioning.MsBuildTask.props" />
     <None Include="_nupkg\build\Nortal.Utilities.AssemblyVersioning.MsBuildTask.props" />
-    <None Include="_nupkg\content\Properties\Nortal.Utilities.AssemblyVersioning.MsBuildTask.props" />
     <None Include="_nupkg\build\Nortal.Utilities.AssemblyVersioning.MsBuildTask.targets" />
     <None Include="_nupkg\Nortal.Utilities.AssemblyVersioning.MsBuildTask.nuspec">
       <SubType>Designer</SubType>
@@ -105,13 +101,12 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENSE_Apache2.0.txt" />
     <Content Include="_nupkg\Readme.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)packages\NuGet.CommandLine.4.3.0\tools\nuget.exe pack -Outputdirectory $(TargetDir) -Properties Configuration=$(ConfigurationName) $(ProjectDir)_nupkg\Nortal.Utilities.AssemblyVersioning.MsBuildTask.nuspec</PostBuildEvent>
+    <PostBuildEvent>$(SolutionDir)packages\NuGet.CommandLine.5.8.0\tools\nuget.exe pack -Outputdirectory $(TargetDir) -Properties Configuration=$(ConfigurationName) $(ProjectDir)_nupkg\Nortal.Utilities.AssemblyVersioning.MsBuildTask.nuspec</PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

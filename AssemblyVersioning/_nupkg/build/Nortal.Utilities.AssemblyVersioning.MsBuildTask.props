@@ -2,20 +2,32 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<!-- Defines properties which can be overrode in project props file -->
 
-	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-		<AssemblyVersioningIsPrerelease >True</AssemblyVersioningIsPrerelease>
-	</PropertyGroup>
-
-	<PropertyGroup Condition=" '$(Configuration)' != 'Debug'"> <!-- Release and all new configurations are by default considered production releases. -->
-		<AssemblyVersioningIsPrerelease>False</AssemblyVersioningIsPrerelease>
-	</PropertyGroup>
-
+	<!-- Default input for generators: -->
 	<PropertyGroup>
-		<AssemblyVersioningBaseVersionFile>Properties\AssemblyInfo.cs</AssemblyVersioningBaseVersionFile>
-		<AssemblyVersioningOutputFile>Properties\AssemblyInformationalVersion.gen.cs</AssemblyVersioningOutputFile>
+		<!-- 'Release' and all new configurations are by default considered production releases. -->
+		<AssemblyVersioningIsPrerelease Condition=" '$(Configuration)' == 'Debug'">True</AssemblyVersioningIsPrerelease>
+		<AssemblyVersioningIsPrerelease Condition=" '$(Configuration)' != 'Debug'">False</AssemblyVersioningIsPrerelease>
+
 		<AssemblyVersioningBuildConfiguration>$(Configuration)</AssemblyVersioningBuildConfiguration>
 		<AssemblyVersioningCustomField1></AssemblyVersioningCustomField1>
 		<AssemblyVersioningCustomField2></AssemblyVersioningCustomField2>
 		<AssemblyVersioningCustomField3></AssemblyVersioningCustomField3>
+	</PropertyGroup>
+
+	<!-- Default assembly version input and output (use /Properties/ folder if exists): -->
+	<PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)\Properties')">
+		<AssemblyVersioningBaseVersionFile>Properties\AssemblyInfo.cs</AssemblyVersioningBaseVersionFile>
+		<AssemblyVersioningOutputFile>Properties\AssemblyInformationalVersion.gen.cs</AssemblyVersioningOutputFile>
+	</PropertyGroup>
+	<PropertyGroup Condition="!Exists('$(MSBuildProjectDirectory)\Properties')">
+		<AssemblyVersioningBaseVersionFile>AssemblyInfo.cs</AssemblyVersioningBaseVersionFile>
+		<AssemblyVersioningOutputFile>AssemblyInformationalVersion.gen.cs</AssemblyVersioningOutputFile>
+	</PropertyGroup>
+
+	<!-- Set default output: -->
+	<PropertyGroup>
+		<GeneratorForInformationalVersion>NugetSemanticVersion</GeneratorForInformationalVersion>
+		<GeneratorForFileVersion>HumanReadable2SlotTimestamp</GeneratorForFileVersion>
+		<GeneratorForConfiguration>HumanReadableBuildInfo</GeneratorForConfiguration>
 	</PropertyGroup>
 </Project>

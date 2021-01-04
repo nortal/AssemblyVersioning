@@ -26,27 +26,62 @@ namespace Nortal.Utilities.AssemblyVersioning
 {
 	internal static class BaseVersionExtractor
 	{
+
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "AssemblyVersionAttribute", Justification = "type name")]
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "AssemblyInfo", Justification = "Part of folder path")]
-		internal static Version Extract(TaskLoggingHelper logger, ITaskItem baseVersionItem)
+		internal static Version Extract(GenerateExtendedAssemblyInfoTask task)
 		{
-			if (baseVersionItem == null) { throw new ArgumentNullException(nameof(baseVersionItem)); }
+			if (!String.IsNullOrEmpty(task.BaseVersion))
+			{
+				task.Log.LogMessage(MessageImportance.Low, "Found base version from project: " + task.BaseVersion);
+				return new Version(task.BaseVersion);
+			}
 
-			var pathToBaseVersionFile = baseVersionItem.ItemSpec;
+			var pathToBaseVersionFile = task.BaseVersionFile.ItemSpec;
 			if (!File.Exists(pathToBaseVersionFile))
 			{
-				logger.LogMessage(MessageImportance.Low, "Working in directory: " + Environment.CurrentDirectory);
-				throw new InvalidOperationException("No base assembly info file exists with name " + pathToBaseVersionFile + ".");
+				task.Log.LogError("", "NV0000", "", pathToBaseVersionFile, 0, 0, 0, 0,
+					$"'Could not find AssemblyVersion from '{task.BaseVersionFile}'. This is required to set base version used for generating other version attributes. See https://github.com/nortal/AssemblyVersioning/wiki/Generator-options for more info.");
+				return new Version();
 			}
 
 			// find assemblyVersion value from file: simplification, but since it is generated file, should be sufficient:
-			string versionLineCandidate = File.ReadAllLines(pathToBaseVersionFile)
-				.Where(line => !line.StartsWith("//"))
-				.FirstOrDefault(line => line.Contains("AssemblyVersion"));
+			string[] fileContents = File.ReadAllLines(pathToBaseVersionFile)
+				.Where(line => !line.TrimStart().StartsWith("//"))
+				.ToArray();
 
-			if (versionLineCandidate == null) { throw new InvalidOperationException(pathToBaseVersionFile + " did not contain expected AssemblyVersionAttribute declaration."); }
-			return ParseVersionFromCandidate(logger, pathToBaseVersionFile, versionLineCandidate);
+			string versionLineCandidate = fileContents.FirstOrDefault(line => line.Contains("AssemblyVersion"));
+			if (versionLineCandidate == null)
+			{
+				task.Log.LogError("", "NV0001", "", pathToBaseVersionFile, 0, 0, 0, 0,
+					$"'Could not find AssemblyVersion from '{task.BaseVersionFile}'. This is required to set base version used for generating other version attributes. See https://github.com/nortal/AssemblyVersioning/wiki/Generator-options for more info.");
+				return new Version();
+			}
+			var baseVersion = ParseVersionFromCandidate(task.Log, pathToBaseVersionFile, versionLineCandidate);
 
+			RequireFileVersionAttributeNotDuplicated(task, pathToBaseVersionFile, fileContents);
+			RequireConfigurationAttributeNotDuplicated(task, pathToBaseVersionFile, fileContents);
+			return baseVersion;
+		}
+
+		private static void RequireFileVersionAttributeNotDuplicated(GenerateExtendedAssemblyInfoTask task, string pathToBaseVersionFile, string[] fileContents)
+		{
+			string fileVersion = fileContents.FirstOrDefault(line => line.Contains("[assembly: AssemblyFileVersion("));
+			if (fileVersion != null && task.GeneratorForFileVersion != "Skip")
+			{
+				task.Log.LogError("", "NV0002", "", pathToBaseVersionFile, 0, 0, 0, 0,
+					$"'{task.BaseVersionFile}' contains FileVersionAttribute. This is in conflict with auto-generated attribute. Please remove this conflicting attribute or omit FileVersionAttribute from automatic generation. See https://github.com/nortal/AssemblyVersioning/wiki/Generator-options for more info.");
+			}
+		}
+
+		private static void RequireConfigurationAttributeNotDuplicated(GenerateExtendedAssemblyInfoTask task, string pathToBaseVersionFile, string[] fileContents)
+		{
+			string configuration = fileContents.FirstOrDefault(line => line.Contains("[assembly: AssemblyConfiguration("));
+			if (configuration != null && task.GeneratorForConfiguration != "Skip")
+			{
+				task.Log.LogError("", "NV0003", "", pathToBaseVersionFile, 0, 0, 0, 0,
+					$"'{task.BaseVersionFile}' contains AssemblyConfigurationAttribute. This is in conflict with auto-generated attribute. Please remove this conflicting attribute or omit AssemblyConfigurationAttribute from automatic generation. See https://github.com/nortal/AssemblyVersioning/wiki/Generator-options for more info.");
+			}
 		}
 
 		private static Version ParseVersionFromCandidate(TaskLoggingHelper logger, string pathToBaseVersionFile, string versionLineCandidate)
