@@ -19,7 +19,7 @@
 		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.8.0" />
 		<PackageReference Include="Nortal.Utilities.AssemblyVersioning.MsBuildTask" Version="0.12.0" />
 		<PackageReference Include="Nortal.Utilities.TextTemplating" Version="0.10.0" GeneratePathProperty="true"/>
-		<PackageReference Include="NuGet.CommandLine" Version="5.8.0">
+		<PackageReference Include="NuGet.CommandLine" Version="5.9.3">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
